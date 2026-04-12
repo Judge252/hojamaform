@@ -10,9 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- مكتبات لإنشاء PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- مكتبات لإنشاء PDF وEmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        // تهيئة EmailJS
+        (function() {
+            emailjs.init("vNAW4MCkvSjEXUWXL");
+        })();
+    </script>
 
     <style>
         :root {
@@ -472,9 +480,10 @@
         <p>شكراً لك. سيتم تحميل نسخة PDF من النموذج قريباً.</p>
     </div>
 
-    <form id="hijamaForm" action="https://formspree.io/f/meepzygy" method="POST">
+    <form id="hijamaForm">
         
-        <div id="captureArea">
+        <div id="form-container">
+            <div id="captureArea">
             <!-- 1. المعلومات الشخصية -->
             <div class="glass-panel">
                 <h2 class="section-title"><span class="emoji-icon">🧍‍♂️</span> المعلومات الشخصية</h2>
@@ -704,17 +713,30 @@
             // استعادة ستايل العنصر  
             captureArea.style.background = '';
 
-            // هنا يتم إرسال البيانات فعلياً عن طريق Fetch إلى Formspree  
-            const actionUrl = form.getAttribute('action');
-            if(actionUrl !== "https://formspree.io/f/YOUR_FORM_ENDPOINT") {
-                await fetch(actionUrl, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-            }
+            // إرسال البيانات عبر EmailJS
+            const templateParams = {
+                to_name: 'Clinic Admin',
+                from_name: dataObj.fullName,
+                patient_name: dataObj.fullName,
+                patient_age: dataObj.age,
+                patient_gender: dataObj.gender,
+                patient_phone: dataObj.phone,
+                patient_address: dataObj.address,
+                has_chronic: dataObj.hasChronic,
+                chronic_diseases: Array.from(formData.getAll('chronic[]')).join(', '),
+                other_chronic: dataObj.otherChronic,
+                takes_medications: dataObj.takesMeds,
+                medications_list: dataObj.medicationsList,
+                blood_thinners: dataObj.bloodThinners,
+                contraindications: Array.from(formData.getAll('contraindications[]')).join(', '),
+                other_contraindication: dataObj.otherContraindication,
+                visit_reason: dataObj.visitReason,
+                pain_areas: dataObj.painAreas,
+                signature_name: dataObj.signatureName,
+                signature_date: dataObj.signatureDate
+            };
+
+            await emailjs.send('service_ps8zeax', 'template_ws7pyld', templateParams);
 
             // إظهار رسالة النجاح وإخفاء الفورم
             form.style.display = 'none';
