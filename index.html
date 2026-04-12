@@ -706,9 +706,8 @@
             // إضافة الصورة إلى الـ PDF
             pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             
-            // تحميل الـ PDF
-            const patientName = document.getElementById('fullName').value || 'Patient';
-            pdf.save(`Cupping_Form_${patientName}.pdf`);
+            // استخراج PDF كـ Base64
+            const pdfBase64 = pdf.output("dataurlstring").split(',')[1];
 
             // استعادة ستايل العنصر  
             captureArea.style.background = '';
@@ -733,7 +732,8 @@
                 visit_reason: dataObj.visitReason,
                 pain_areas: dataObj.painAreas,
                 signature_name: dataObj.signatureName,
-                signature_date: dataObj.signatureDate
+                signature_date: dataObj.signatureDate,
+                attachment: pdfBase64
             };
 
             await emailjs.send('service_ps8zeax', 'template_ws7pyld', templateParams);
