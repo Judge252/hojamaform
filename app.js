@@ -9,9 +9,9 @@
 // 6. Replace the values below with your actual credentials
 // ======================================
 
-const EMAILJS_SERVICE_ID = 'service_xxxxx'; // Replace with your service ID
-const EMAILJS_TEMPLATE_ID = 'template_xxxxx'; // Replace with your template ID
-const EMAILJS_PUBLIC_KEY = 'xxxxxxx'; // Replace with your public key
+const EMAILJS_SERVICE_ID = 'service_ps8zeax'; // Your service ID
+const EMAILJS_TEMPLATE_ID = 'template_ws7pyld'; // Your template ID
+const EMAILJS_PUBLIC_KEY = 'vNAW4MCkvSjEXUWXL'; // Your public key
 
 // Check if credentials are set up
 const isSetupComplete = EMAILJS_SERVICE_ID !== 'service_xxxxx' && 
