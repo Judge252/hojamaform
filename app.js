@@ -18,6 +18,12 @@ const isSetupComplete = EMAILJS_SERVICE_ID !== 'service_xxxxx' &&
                        EMAILJS_TEMPLATE_ID !== 'template_xxxxx' && 
                        EMAILJS_PUBLIC_KEY !== 'xxxxxxx';
 
+console.log("[v0] EmailJS Setup Debug:");
+console.log("[v0] Service ID:", EMAILJS_SERVICE_ID);
+console.log("[v0] Template ID:", EMAILJS_TEMPLATE_ID);
+console.log("[v0] Public Key:", EMAILJS_PUBLIC_KEY);
+console.log("[v0] Setup Complete:", isSetupComplete);
+
 // Initialize emailjs with better error handling
 try {
     emailjs.init(EMAILJS_PUBLIC_KEY);
