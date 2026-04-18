@@ -6,6 +6,9 @@ const EMAILJS_PUBLIC_KEY = "vNAW4MCkvSjEXUWXL";
 const EMAILJS_SERVICE_ID = "service_ps8zeax";
 const EMAILJS_TEMPLATE_ID = "template_ukersdg";
 
+// Initialize EmailJS with the public key
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('hijama-form');
     const submitBtn = document.getElementById('submitBtn');
