@@ -1,0 +1,16 @@
+// Example configuration for app.js
+// Copy your actual credentials from EmailJS and replace the placeholders
+
+// After you get your credentials from https://dashboard.emailjs.com/
+// Replace these values:
+
+const EMAILJS_SERVICE_ID = 'service_xxxxxxxxxxxxxxxx';     // Replace this
+const EMAILJS_TEMPLATE_ID = 'template_xxxxxxxxxxxx';      // Replace this  
+const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxxxxxxx';        // Replace this
+
+// Example of what it might look like:
+/*
+const EMAILJS_SERVICE_ID = 'service_a1b2c3d4e5f6g7h8i9j0';
+const EMAILJS_TEMPLATE_ID = 'template_z9y8x7w6v5u4t3s2r1';
+const EMAILJS_PUBLIC_KEY = '3y8n2kL9j7x5W6qM8pK2';
+*/
